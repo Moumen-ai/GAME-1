@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://byuocim18ewwg"]
+
+[ext_resource type="Script" uid="uid://3jgrghplm7lc" path="res://main.gd" id="1_7mycd"]
+[ext_resource type="Texture2D" uid="uid://dg7k6edbyjkfp" path="res://Assest/BackGround/parallax-demon-woods-bg.png" id="1_lquwl"]
+[ext_resource type="Texture2D" uid="uid://csv5wofsslavl" path="res://Assest/BackGround/parallax-demon-woods-far-trees.png" id="2_7mycd"]
+[ext_resource type="PackedScene" uid="uid://4hfpkcedve0j" path="res://Assest/Enemies/enemy.tscn" id="2_272bh"]
+[ext_resource type="Texture2D" uid="uid://cl68wi4seh1nl" path="res://Assest/BackGround/parallax-demon-woods-mid-trees.png" id="3_272bh"]
+[ext_resource type="Texture2D" uid="uid://7vx725nd7ger" path="res://Assest/BackGround/parallax-demon-woods-close-trees.png" id="4_5vw27"]
+[ext_resource type="PackedScene" uid="uid://da64gldqgqmwx" path="res://Assest/Player/player.tscn" id="5_kek77"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_7mycd")
+enemy_scene = ExtResource("2_272bh")
+
+[node name="Player" parent="." instance=ExtResource("5_kek77")]
+position = Vector2(6, 14)
+speed = 600.0
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+autostart = true
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(581, 323.99997)
+scale = Vector2(2.3958333, 2.3382351)
+texture = ExtResource("1_lquwl")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+position = Vector2(579.5, 315)
+scale = Vector2(1.9476352, 2.3235295)
+texture = ExtResource("2_7mycd")
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]
+position = Vector2(579.5, 321.5)
+scale = Vector2(1.9476352, 2.3566177)
+texture = ExtResource("3_272bh")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(577, 325.50003)
+scale = Vector2(1.945946, 2.3639703)
+texture = ExtResource("4_5vw27")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
